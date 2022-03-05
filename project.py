@@ -1,4 +1,4 @@
-""" p1 = input(
+p1 = input(
     'Player 1 enter your name and your symbol for game separated by comma:')
 p2 = input(
     'Player 2 enter your name and your symbol for game separated by comma:')
@@ -11,7 +11,7 @@ try:
     print('Welcome {}, your symbol for the game is {}'.format(
         p2.split(',')[0], p2.split(',')[1]))
 except IndexError:
-    print('Enter only two values and separate them with comma') """
+    print('Enter only two values and separate them with comma')
 
 length = int(input('Enter the length of field (min 5,max10): '))
 width = int(input('Enter the width of field (min 5,max10): '))
