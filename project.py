@@ -53,15 +53,23 @@ size_of_field(length, width)
 def game(game_field):
     print('Enter your symbol on position in the field (for example: C2)')
     turn = 0
-    for row in game_field:
-        if '-' in row:
-            player_on_turn = players_list[turn % 2]
-            place = input("{}, it's your turn:".format(player_on_turn))
-            letters.index(place[0])
-            game_field[letters.index(place[0])][int(
-                place[1])] = players_dict[player_on_turn]
-            turn += 1
-            print(*game_field, sep='  ')
+    next_turn = 1
+    while next_turn >= True:
+        player_on_turn = players_list[turn % 2]
+        place = input("{}, it's your turn:".format(player_on_turn))
+        letters.index(place[0])
+        game_field[letters.index(place[0])][int(
+            place[1])] = players_dict[player_on_turn]
+        turn += 1
+        for row in game_field:
+            print(*row, sep='  ')
+        next_turn = 0
+        for column in game_field:
+            for row in column:
+                if row == '-':
+                    next_turn += 1
+                else:
+                    continue
 
 
 game(field)
