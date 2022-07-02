@@ -1,4 +1,6 @@
-""" p1 = input(
+from operator import index, le
+
+p1 = input(
     'Player 1 enter your name and your symbol for game separated by comma:')
 p2 = input(
     'Player 2 enter your name and your symbol for game separated by comma:')
@@ -11,17 +13,24 @@ try:
     print('Welcome {}, your symbol for the game is {}'.format(
         p2.split(',')[0], p2.split(',')[1]))
 except IndexError:
-    print('Enter only two values and separate them with comma') """
+    print('Enter only two values and separate them with comma')
+
+players_list = [p1.split(',')[0], p2.split(',')[0]]
+
+players_dict = {p1.split(',')[0]: p1.split(
+    ',')[1], p2.split(',')[0]: p2.split(',')[1]}
+
+""" print(players_list)
+print(players_dict) """
 
 length = int(input('Enter the length of field (min 5,max10): '))
 width = int(input('Enter the width of field (min 5,max10): '))
 
 field = []
+letters = [' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
 
 
 def size_of_field(width, length):
-
-    letters = [' ', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
     for l in range(length+1):
         test_list = []
         for i in range(width+1):
@@ -39,3 +48,28 @@ def size_of_field(width, length):
 size_of_field(length, width)
 
 # print(field)
+
+
+def game(game_field):
+    print('Enter your symbol on position in the field (for example: C2)')
+    turn = 0
+    next_turn = 1
+    while next_turn >= True:
+        player_on_turn = players_list[turn % 2]
+        place = input("{}, it's your turn:".format(player_on_turn))
+        letters.index(place[0])
+        game_field[letters.index(place[0])][int(
+            place[1])] = players_dict[player_on_turn]
+        turn += 1
+        for row in game_field:
+            print(*row, sep='  ')
+        next_turn = 0
+        for column in game_field:
+            for row in column:
+                if row == '-':
+                    next_turn += 1
+                else:
+                    continue
+
+
+game(field)
